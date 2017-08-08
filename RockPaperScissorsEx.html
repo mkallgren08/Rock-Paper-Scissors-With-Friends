@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Rock Paper Scissors</title>
+</head>
+<body>
+<div id="game"></div>
+<h2> Press r, s or p <span id="userGuess"><strong>...nothing</strong></span></h2>
+<h2>Wins: <span id="winCount"></span></h2>
+<h2>Losses: <span id="lossCount"></span></h2>
+<h2>Ties: <span id="tieCount"></span></h2>
+
+<script type="text/javascript">
+
+ // Whenever a key is pressed, alert "pressed a button".
+    document.onkeyup = function() {
+      alert("pressed a button");
+    };
+
+// Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["r", "p", "s"];
+    var win = 0
+    var loss = 0
+    var tie = 0
+
+    document.getElementById("winCount").innerHTML = win;
+    document.getElementById("lossCount").innerHTML = loss;
+    document.getElementById("tieCount").innerHTML = tie;
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+      // Alerts the key the user pressed (userGuess).
+      alert("User guess: " + userGuess);
+
+      // Alerts the Computer's guess.
+      alert("Computer guess: " + computerGuess);
+
+    };
+
+    if (userGuess === computerGuess){
+        alert("Comp picked that too! You tied.")
+        tie++
+        document.getElementById("tieCount").innerHTML = tie;
+    }
+    
+    // -----------------------------------------
+    else if (computerGuess === "r" && userGuess === "p"){
+        alert("Comp picked rock. You win!")
+        win++
+        document.getElementById("winCount").innerHTML = win;
+       
+    }
+    // ----------------------------------------
+    else if (computerGuess === "r" && userGuess === "s"){
+        alert("Comp picked rock. You lose :(")
+        loss++
+        document.getElementById("lossCount").innerHTML = loss;
+    }
+    // ----------------------------------------
+    else if (computerGuess === "p" && userGuess === "r"){
+        alert("Comp picked paper. You lose :(")
+        loss++
+        document.getElementById("lossCount").innerHTML = loss;
+    }
+    // ----------------------------------------
+    else if (computerGuess === "p" && userGuess === "s"){
+        alert("Comp picked paper. You win!")
+        win++
+        document.getElementById("winCount").innerHTML = win;
+    }
+    // ----------------------------------------
+    else if (computerGuess === "s" && userGuess === "r"){
+        alert("Comp picked scissors. You win!")
+        win++
+        document.getElementById("winCount").innerHTML = win;
+    }
+    // ----------------------------------------
+    else if (computerGuess === "s" && userGuess === "p"){
+        alert("Comp picked scissors. You lose!")
+        loss++
+        document.getElementById("lossCount").innerHTML = loss;
+    }
+</script>
+
+
+</body>
+</html>
+	
