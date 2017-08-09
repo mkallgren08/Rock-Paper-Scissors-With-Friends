@@ -1,5 +1,5 @@
  // Initialize Firebase
-  // Initialize Firebase
+//=================================================================
   var config = {
     apiKey: "AIzaSyBvA9My1TC8DRmJaydWEUtaU9s8ypiuRKc",
     authDomain: "rock-paper-scissors-messaging.firebaseapp.com",
@@ -15,7 +15,74 @@
   var msgDatabase = firebase.database();
   console.log(msgDatabase)
 
-  var messages = []
+  var messages = [];
+
+  var numPlayers;
+
+  var Player1;
+
+  var Player2;
+//======================================================
+  // USER/PLAYER LOGS
+//======================================================
+// connectionsRef references a specific location in our database.
+// All of our connections will be stored in this directory.
+var connectionsRef = msgDatabase.ref("/connections");
+
+// '.info/connected' is a special location provided by Firebase that is updated every time
+// the client's connection state changes.
+// '.info/connected' is a boolean value, true if the client is connected and false if they are not.
+var connectedRef = msgDatabase.ref(".info/connected");
+
+// When the client's connection state changes...
+connectedRef.on("value", function(snap) {
+  // If they are connected..
+  if (snap.val()) {
+    // Add user to the connections list.
+    var con = connectionsRef.push(true);
+    // Remove user from the connection list when they disconnect.
+    con.onDisconnect().remove();
+  }
+});
+
+// When first loaded or when the connections list changes...
+
+connectionsRef.on("value", function(snap) {
+
+  // Display the viewer count in the html.
+  // The number of online users is the number of children in the connections list.
+  $("#watchers").html(snap.numChildren());
+  numPlayers = msgDatabase.ref("numPlayers").set(snap.numChildren());
+  console.log(snap.numChildren())
+
+});
+
+msgDatabase.ref("connections").on("value", function(snapshot) {
+	var data = Object.keys(snapshot.val());
+    console.log(data);
+    for( var i = 0; i < 2; i++) {
+        	// "?" = value-if-true, ":" value-if-false
+            name = data[i]
+            console.log(name);
+            if (i == 0) {
+            	player1 = name;
+            	console.log("Player1 ID: " + player1);
+            } else if ( i === 1){
+            	player2 = name;
+            	console.log("Player2 ID: " + player2);
+            }
+        }
+});
+
+
+var numPlayers = msgDatabase.ref('numPlayers').on("value", function(snapshot) {
+
+				});
+
+
+
+
+
 
   // // When the user presses enter on the message input, write the message to firebase.
   // $("#messageInput").keypress(function (e) {
@@ -58,7 +125,7 @@ function makeTextOutput(messageText){
 	// $("#messagesDiv").empty();
 	var a = $("<p>");
 	var output = a.text("Player 1: " + messageText);
-	$("#messagesDiv").append(output);
+	$("#messagesDiv").prepend(output);
 }
 
 function saveMsgToFB(messageText) {
@@ -68,13 +135,13 @@ function saveMsgToFB(messageText) {
     });
 };
  
-function refreshUI(messageLog) {
-    var lis = '';
-    for (var i = 0; i < messageLog.length; i++) {
-        lis += '<p data-key="' + messageLog[i].key + '">' + messageLog[i].name + '</>';
-    };
-    $("#messagedDiv").html(lis);
-};
+// function refreshUI(messageLog) {
+//     var lis = '';
+//     for (var i = 0; i < messageLog.length; i++) {
+//         lis += '<p data-key="' + messageLog[i].key + '">' + messageLog[i].name + '</>';
+//     };
+//     $("#messagedDiv").html(lis);
+// };
  
 // this will get fired on inital load as well as 
 // whenever there is a change in the data
@@ -91,11 +158,20 @@ msgDatabase.ref('room1').once("value", function(snapshot) {
             if (name.trim().length > 0) {
             	var m = $("<p>")
             	m.text(name)
-                $("#messagesDiv").append(m);
+                $("#messagesDiv").prepend(m);
                 }
             }
         }
     });
+// Retrieve new posts as they are added to our database
+msgDatabase.ref('room1').on("child_added", function(snapshot, prevChildKey) {
+  var newPost = snapshot.val();
+  console.log("Last Message: " + newPost.message);
+
+  var n = $("<p>")
+	n.text(newPost)
+   	$("#messagesDiv").prepend(n);
+});
     // refresh the UI
 //     refreshUI(messageLog);
 // });
