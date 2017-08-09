@@ -1,0 +1,21 @@
+#delete-wrapper{
+
+}
+
+.jumbotron{
+	text-align: center;
+	padding:15px 30px;
+}
+
+#messagesDiv{
+	overflow: scroll;
+	height: 120px;
+}
+
+
+#messageText{
+	overflow: scroll;
+	min-width: 80%;
+	margin: 5px 10%;
+}
+
