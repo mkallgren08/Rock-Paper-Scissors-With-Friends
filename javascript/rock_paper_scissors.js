@@ -28,7 +28,7 @@
 
   var myID = "";
 
-  var myQueueNumber
+  var title = ""
 //======================================================
   // USER/PLAYER LOGS
 //======================================================
@@ -86,6 +86,7 @@ connectedRef.on("value", function(snap) {
     connectionsRef.on("value", function(snapshot) {
 			makeMainPlayerIDs(snapshot);
 			highlightPlayer(myID);
+			returnName(myID);
 	});
 
   }
@@ -151,6 +152,16 @@ function clearMsgLogs(roomToDelete){
 	});
 };
 
+function returnName(myID){
+	if (myID === players[0] && myID !== players[1]){
+		title = "Player 1: "
+	} else if (myID === players[1] && myID !== players[0]){
+		title =  "Player 2: "
+	} else {
+		title =  "Spectator: "
+	}
+	console.log("Title: " + title)
+}
 
 function saveToList(event) {
   	$("input").keydown(function(event){
@@ -159,8 +170,10 @@ function saveToList(event) {
 	    												// we will attempt to save the data
 	        var messageText = $('#messageText').val().trim();
 	        if (messageText.length > 0) {
-	            saveMsgToFB(messageText);
+	        	//var title = returnName(myID);
+	            saveMsgToFB(title + messageText);
 	            //makeTextOutput(messageText);
+	            console.log("Title: " + title);
 	        }
 	        $('#messageText').val("");
 	        return false;
@@ -171,14 +184,15 @@ function saveToList(event) {
 function makeTextOutput(messageText){
 	// $("#messagesDiv").empty();
 	var a = $("<p>");
-	var output = a.text("Player 1: " + messageText);
+	//var title = returnName(myID);
+	var output = a.text(messageText);
 	$("#messagesDiv").prepend(output);
 }
 
 function saveMsgToFB(messageText) {
     // this will save data to Firebase
     msgDatabase.ref("room1").push({
-        message: "Player1: " + messageText,
+        message: messageText,
     });
 };
  
