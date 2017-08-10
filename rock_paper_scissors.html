@@ -67,7 +67,8 @@
 				    <h3 class="panel-title">ARENA OF AWESOME</h3>
 				  </div>
 				  <div class="panel-body">
-				    Panel content
+				  	<p id = "waitingPlayer1"> Waiting for player 1.....</p>
+				  	<p id = "waitingPlayer2"> Waiting for player 2.....</p>
 				  </div>
 				</div>
 			</div>
@@ -101,13 +102,13 @@
 			<div class="col-md-2"> <!-- Log Clear Button -->
 				<div id = "delete-wrapper">
 					<label for = "clear-logs">Delete Message Logs</label>
-					<p><button type = "submit" id = "clear-logs" ></button></p>
+					<p><button type = "submit" id = "clear-logs" class = "btn btn-danger"></button></p>
 				</div>
 			</div>
 			<div class="col-md-8"> <!-- Main Chat Area -->
 				<div class="row">
 				    <div id="messagesDiv"></div>
-				    <h3>Firebase Realtime Chat</h3>					
+				    <h4 style = "text-align: center;">Chat</h4>					
 				</div>
 				<div class="row">
 				    <input type="text" id="messageText" placeholder="Message Text" />
