@@ -25,28 +25,33 @@
 			<div class="col-md-12">
 				<div class="jumbotron">
 				  <h1>Hello, world!</h1>
-				  <p>this is where the rules of the game will go! Number of watchers: <span id = "watchers"></span></p>
+				  <p>this is where the rules of the game will go!</p>
+				  <ul>
+				  	<li> DO NOT reloadd the page - you will get bumped to the end of the queue</li>
+				  </ul>
+				  <p> Number of watchers: <span id = "watchers"></span></p>
 
 				</div>
 			</div>	
 		</div> <!-- End Header Row -->
 
 		<div class = "row"> <!-- Game Screen -->
-			<div class="col-md-4"> <!-- Player 1 -->
+			<div class="col-md-4  player1-panel"> <!-- Player 1 -->
 				<div class="panel panel-default">
 				  <div class="panel-heading">
-				    <h3 class="panel-title"><span id = "p1Name">Ready Player One</span></h3>
+				    <h3 class="panel-title" id = "p1-Title"">Ready Player One</h3>
+				    <input role = "input" placeholder = "Your Name" id = "p2-nameInput"></input><button class = "btn btn-primary go-btn" id = "p2Go">GO</button><span id = p1-Name></span>
 				  </div>
 				  <div class="panel-body">
 				   <div class="btn-group btn-group-justified" role="group" aria-label="...">
 				    	<div class="btn-group" role = "group">
-						  <button type="button" class="btn btn-default rockBtn">Rock</button>
+						  <button type="button" class="btn btn-default p1-weapon-pick" value = "rock">Rock</button>
 						</div>
 						<div class="btn-group" role = "group">
-						  <button type="button" class="btn btn-default paperBtn">Paper</button>
+						  <button type="button" class="btn btn-default p1-weapon-pick" value = "paper">Paper</button>
 						</div>
 						<div class="btn-group" role = "group">
-						  <button type="button" class="btn btn-default scissorsBtn">Scissors</button>
+						  <button type="button" class="btn btn-default p1-weapon-pick" value = "scissors">Scissors</button>
 						</div>
 					</div>
 				  </div>
@@ -66,21 +71,22 @@
 				  </div>
 				</div>
 			</div>
-			<div class="col-md-4"> <!-- Player 2 -->
-				<div class="panel panel-default">
+			<div class="col-md-4 player2-panel"> <!-- Player 2 -->
+				<div class="panel panel-default ">
 				  <div class="panel-heading">
-				    <h3 class="panel-title"><span id = "p2Name">Ready Player Two</span></h3>
+				    <h3 class="panel-title" id = "p2-Title"">Ready Player Two</h3>
+				    <input role = "input" placeholder = "Your Name" id = "p2-nameInput"></input><button class = "btn btn-primary go-btn" id = "p1Go">GO</button><span id = p2-Name></span>
 				  </div>
 				  <div class="panel-body">
 				    <div class="btn-group btn-group-justified" role="group" aria-label="...">
 				    	<div class="btn-group" role = "group">
-						  <button type="button" class="btn btn-default rockBtn">Rock</button>
+						  <button type="button" class="btn btn-default p2-weapon-pick" value = "rock">Rock</button>
 						</div>
 						<div class="btn-group" role = "group">
-						  <button type="button" class="btn btn-default paperBtn">Paper</button>
+						  <button type="button" class="btn btn-default p2-weapon-pick" value = "paper">Paper</button>
 						</div>
 						<div class="btn-group" role = "group">
-						  <button type="button" class="btn btn-default scissorsBtn">Scissors</button>
+						  <button type="button" class="btn btn-default p2-weapon-pick" value = "scissors">Scissors</button>
 						</div>
 					</div>
 				  </div>

@@ -1,0 +1,17 @@
+// msgDatabase.ref('room1').once("value", function(snapshot) {
+//     var data = snapshot.val();
+//     console.log(data);
+//     var messageLog = [];
+//     for (var key in data) {
+//         if (data.hasOwnProperty(key)) {
+//         	// "?" = value-if-true, ":" value-if-false
+//             name = data[key].message ? data[key].message : '';
+//             console.log(name);
+//             if (name.trim().length > 0) {
+//             	var m = $("<p>")
+//             	m.text(name)
+//                 $("#messagesDiv").prepend(m);
+//                 }
+//             }
+//         }
+//     });

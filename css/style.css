@@ -2,6 +2,19 @@
 
 }
 
+#p1-nameInput, #p2-nameInput{
+	display: inline;
+	font-size: 14px;
+	line-height: 1.42;
+	height: 30px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.player1-panel{
+	
+}
+
 .jumbotron{
 	text-align: center;
 	padding:15px 30px;
